@@ -1,0 +1,22 @@
+import sqlite3
+
+
+conn = sqlite3.connect('SNPTable.db')
+
+
+conn.execute('''CREATE TABLE RSID_INFO
+               (ID INT PRIMARY KEY     NOT NULL,
+               RSID           TEXT    NOT NULL,
+               ALLELES        TEXT    NOT NULL,
+               CANCER         TEXT    NOT NULL,
+               RISK_ASSOC     REAL);''')
+
+
+conn.execute("INSERT INTO RSID_INFO (ID,RSID,ALLELES,CANCER,RISK_ASSOC) \
+              VALUES (1, 'rs123', 'AGCT', 'Breast Cancer', 0.5)")
+conn.execute("INSERT INTO RSID_INFO (ID,RSID,ALLELES,CANCER,RISK_ASSOC) \
+              VALUES (2, 'rs456', 'AGCT', 'Lung Cancer', 0.2)")
+
+
+conn.commit()
+conn.close()
